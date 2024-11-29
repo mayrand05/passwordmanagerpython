@@ -142,7 +142,7 @@ def main():
             return
 
         salt, hashed_password = hash_master_password(master_password)
-        totp_secret = save_master_password(salt, hashed_password)  # Save and retrieve the secret
+        totp_secret = save_master_password(salt, hashed_password)  
         print("Master password set successfully!")
         print("TOTP Setup Key:", totp_secret)
         print("Use this key to set up your authenticator app.")
@@ -157,7 +157,7 @@ def main():
                 time.sleep(COOLDOWN_SECONDS)
                 continue
 
-            totp = pyotp.TOTP(totp_secret, digits=6)  # Set TOTP to generate 8 digits
+            totp = pyotp.TOTP(totp_secret, digits=6) 
             otp = input("Enter the 2FA code from your authenticator app: ")
             if not totp.verify(otp):
                 print("2FA verification failed.")
